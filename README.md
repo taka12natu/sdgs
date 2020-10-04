@@ -29,25 +29,22 @@ SDGsに関する企業や個人の取り組みの共有・交流メディア
 - 自分にできることを見つけたい
 
 ## 設計書
-#UIフロー
- -ユーザー
+### UIフロー
+- ユーザー
  　https://drive.google.com/file/d/1jVe_l5EzIrNOdv349ODcQHlnHE5EtrPZ/view?usp=sharing
- 
- -管理者
+- 管理者
  　https://drive.google.com/file/d/1_W-kV6vb5bBCcr6Y_-Hq2FoTr5b3bKqh/view?usp=sharing
+### ワイヤーフレーム
+- ユーザー
+ https://drive.google.com/file/d/1XeKvm9Xa-fVap4jaFeW8zudLqisjlOQ8/view?usp=sharing
+- 管理者
+https://drive.google.com/file/d/1FsD08lPsi1y48SMJq7ALqnkXqj8SnWsK/view?usp=sharing
 
-#ワイヤーフレーム
- -ユーザー
-  https://drive.google.com/file/d/1XeKvm9Xa-fVap4jaFeW8zudLqisjlOQ8/view?usp=sharing
+### ER図
+https://drive.google.com/file/d/17WE1OvTimUvP65LkYkYxALCy3rDg3C0u/view?usp=sharing
 
--管理者
-  https://drive.google.com/file/d/1FsD08lPsi1y48SMJq7ALqnkXqj8SnWsK/view?usp=sharing
-
-#ER図
-  https://drive.google.com/file/d/17WE1OvTimUvP65LkYkYxALCy3rDg3C0u/view?usp=sharing
-
-#テーブル設計書
-　https://drive.google.com/file/d/18vLcqUxKdwh4IMoJI3mvSwjvfTTzHlKH/view?usp=sharing
+### テーブル設計書
+https://drive.google.com/file/d/18vLcqUxKdwh4IMoJI3mvSwjvfTTzHlKH/view?usp=sharing
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1H_OqHfSGhgkMiov2tFrnnY7SWDF2q1qHkBOvgpepqeM/edit?usp=sharing
