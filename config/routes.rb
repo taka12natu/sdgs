@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
   	get 'top' => 'tops#top'
+    resources :tags, only: [:index, :create, :destroy]
   end
 
   get '/top' => 'public/tops#top'
