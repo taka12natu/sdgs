@@ -12,7 +12,9 @@
   <body>
     <header>
       <% if user_signed_in? %>
+      <p>ログインユーザー：<%= current_user.name %></p>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "top", top_path %>
       <% elsif admin_signed_in?  %>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       <% else %>
