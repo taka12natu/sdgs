@@ -13,6 +13,13 @@ User.create!(
 	category: :other
 )
 
+User.create!(
+	name: 'sss',
+	email: 'sss@sss',
+	password: 'ssssss',
+	category: :other
+)
+
 Admin.create!(
 	email: 'aaa@aaa',
 	password: 'aaaaaa'

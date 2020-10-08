@@ -8,3 +8,22 @@
 
 <%= link_to "投稿編集", edit_post_path(@post) %>
 <%= link_to "投稿一覧", posts_path %>
+
+<p>コメント</p>
+	<% if @post.comments.ids.present? %>
+		<table>
+			<% @post.comments.each do |comment| %>
+				<tr>
+					<td><%= comment.user.name %></td>
+					<td><%= comment.content %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<p>コメントはまだありません。</p>
+	<% end %>
+
+<%= form_for [@post, @comment] do |f| %>
+	<%= f.text_area :content %>
+	<%= f.submit %>
+<% end %>

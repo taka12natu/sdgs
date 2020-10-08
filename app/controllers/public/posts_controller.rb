@@ -1,11 +1,13 @@
 class Public::PostsController < ApplicationController
 
 	def index
-		@posts = current_user.posts
+		@posts = Post.all
 	end
 
 	def show
 		@post = Post.find(params[:id])
+		@comments = @post.comments
+		@comment = Comment.new
 	end
 
 	def new

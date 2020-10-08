@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id", unique: true
-    t.index ["user_id"], name: "index_comments_on_user_id", unique: true
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
