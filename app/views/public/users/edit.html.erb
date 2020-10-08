@@ -1,0 +1,26 @@
+<h1>編集</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.attachment_field :image %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %><br>
+
+	<%= f.label :introduction %>
+	<%= f.text_area :introduction %><br>
+
+	 <div class="field">
+    <%= f.radio_button :category, :individual, checked: true %>
+    <%= f.label :category, "個人", {value: :individual, style: "display: inline-block;"} %>
+    <%= f.radio_button :category, :company %>
+    <%= f.label :category, "企業", {value: :company, style: "display: inline-block;"} %>
+    <%= f.radio_button :category, :npo %>
+    <%= f.label :category, "NPO", {value: :npo, style: "display: inline-block;"} %>
+    <%= f.radio_button :category, :other %>
+    <%= f.label :category, "その他団体", {value: :other, style: "display: inline-block;"} %>
+  </div>
+
+  <%= f.submit "送信" %>
+<% end %>
+
+<%= link_to "back", user_path(@user) %>
