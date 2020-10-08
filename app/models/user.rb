@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :category, presence: true
+
+  attachment :image
 end

@@ -1,0 +1,18 @@
+<h1>my page</h1>
+
+<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100') %>
+
+<p>ユーザー名</p>
+<%= @user.name %>
+
+<p>プロフィール</p>
+<%= @user.introduction %>
+
+<p>所属</p>
+<%= @user.category %>
+
+<%= link_to "編集", edit_user_path(@user) %>
+
+<p>投稿一覧</p>
+<p>お気に入り投稿</p>
+<p>フォローユーザー</p>

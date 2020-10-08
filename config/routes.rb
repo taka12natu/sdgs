@@ -6,8 +6,8 @@ Rails.application.routes.draw do
           passwords: 'public/passwords'
         }
 
-  namespace :public do
-
+  scope module: :public do
+    resources :users, only: [:show, :edit, :update]
   end
 
   devise_for :admins, controllers: {
@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   	get 'top' => 'tops#top'
   end
 
-      get '/top' => 'public/tops#top'
+  get '/top' => 'public/tops#top'
 
 end
