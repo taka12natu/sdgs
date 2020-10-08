@@ -6,6 +6,15 @@
 <h2>内容</h2>
 <%= @post.body %>
 
+<h2>goal</h2>
+<%= @post.goal.name %>
+
+<h2>tag</h2>
+<% @post.post_tags.each do |post_tag| %>
+	<%= post_tag.tag.name %>
+<% end %>
+
+
 <%= link_to "投稿編集", edit_post_path(@post) %>
 <%= link_to "投稿一覧", posts_path %>
 

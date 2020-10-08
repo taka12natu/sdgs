@@ -17,9 +17,6 @@ class Public::PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		@post.user_id = current_user.id
-
-		# goal未作成のため仮設定
-		@post.goal_id = "1"
 		@post.save
 		redirect_to post_path(@post)
 	end
@@ -42,6 +39,6 @@ class Public::PostsController < ApplicationController
 
 	private
 	def post_params
-		params.require(:post).permit(:title, :body)
+		params.require(:post).permit(:title, :body, :goal_id, { tag_ids: [] })
 	end
 end

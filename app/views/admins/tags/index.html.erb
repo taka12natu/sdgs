@@ -1,0 +1,12 @@
+<h1>タグ管理</h1>
+
+<% @tags.each do |tag| %>
+	<table>
+			<tr><%= tag.name %></tr>
+	</table>
+<% end %>
+
+<%= form_for [:admins,@tag] do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+<% end %>
