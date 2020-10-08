@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:show, :edit, :update]
+    resources :posts
   end
 
   devise_for :admins, controllers: {

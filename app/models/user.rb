@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :category, presence: true
 
   attachment :image
+
+  has_many :posts
 end
