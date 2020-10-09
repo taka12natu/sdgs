@@ -1,7 +1,15 @@
 class Public::PostsController < ApplicationController
 
 	def index
-		@posts = Post.all
+		#キーワード検索時
+		if params[:word].present?
+			@posts = Post.search(params[:word])
+		#タグ検索時
+		elsif params[:tag_id].present?
+			@posts = Tag.find(params[:tag_id]).posts
+		else
+			@posts = Post.all
+		end
 	end
 
 	def show

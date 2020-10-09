@@ -19,7 +19,11 @@ Rails.application.routes.draw do
 
   namespace :admins do
   	get 'top' => 'tops#top'
+    get 'search' => 'searches#search'
     resources :tags, only: [:index, :create, :destroy]
+    resources :posts, only: [:index, :show]
+    resources :users, only: [:index, :show]
+    resources :comments, only: [:index]
   end
 
   get '/top' => 'public/tops#top'

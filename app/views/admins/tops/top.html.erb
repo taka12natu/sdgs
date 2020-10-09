@@ -1,5 +1,9 @@
 <h1>admin top</h1>
 
+<%= link_to "ユーザー管理", admins_users_path %>
+<%= link_to "投稿管理", admins_posts_path %>
+<%= link_to "コメント管理", admins_comments_path %>
 <%= link_to "タグ管理", admins_tags_path %>
 
 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+
