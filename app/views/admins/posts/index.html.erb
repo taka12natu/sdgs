@@ -13,10 +13,8 @@
 			<tr>
 				<td><%= post.user.name %></td>
 				<td><%= post.title %></td>
-				<td><%= link_to "詳細", post_path(post) %></td>
+				<td><%= link_to "詳細", admins_post_path(post) %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-
-<%= render 'layouts/sidebar' %>

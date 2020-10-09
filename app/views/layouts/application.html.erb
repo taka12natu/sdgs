@@ -17,6 +17,13 @@
         <%= link_to "top", top_path %>
       <% elsif admin_signed_in?  %>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        <!-- 検索機能 -->
+         <%= form_tag(admins_search_path, method: :get) do %>
+          <%= text_field_tag :word %>
+          <%= select_tag 'range', options_for_select([["ユーザー", "user"], ["投稿", "post"], ["コメント", "comment"]]) %>
+          <%= submit_tag "検索" %>
+        <% end %>
+        <!--  -->
       <% else %>
         <%= link_to "ログイン", new_user_session_path %>
         <%= link_to "新規登録", new_user_registration_path %>

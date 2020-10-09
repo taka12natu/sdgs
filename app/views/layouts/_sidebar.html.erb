@@ -1,0 +1,10 @@
+<p>キーワード検索</p>
+	<%= form_tag(posts_path, method: :get) do %>
+		<%= text_field_tag :word %>
+		<%= submit_tag "検索" %>
+	<% end %>
+
+<p>タグ検索</p>
+<% Tag.all.each do |tag| %>
+	<%= link_to tag.name, posts_path(tag_id: tag.id) %><br>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>コメント一覧</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>コメント内容</th>
+				<th>ユーザー名</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @comments.each do |comment| %>
+			<tr>
+				<td><%= comment.id %></td>
+				<td><%= comment.content %></td>
+				<td><%= comment.user.name %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
