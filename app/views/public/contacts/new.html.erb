@@ -1,0 +1,21 @@
+<h1>お問い合わせフォーム</h1>
+
+  <%= form_for(@contact, url: contacts_confirm_path) do |f|  %>
+
+	<%= f.label :名前 %>
+    <%= f.text_field :name %><br>
+
+	<%= f.label :email %>
+    <%= f.text_field :email %><br>
+
+    <%= f.radio_button :category, :サービスについて, checked: true %>
+	<%= f.label :サービスについて %>
+    <%= f.radio_button :category, :要望 %>
+	<%= f.label :要望　%><br>
+
+	<%= f.label :内容　%>
+    <%= f.text_field :content %><br>
+
+	<%= f.submit :確認画面へ進む　%>
+
+<% end %>

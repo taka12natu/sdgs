@@ -21,8 +21,8 @@ User.create!(
 )
 
 Admin.create!(
-	email: 'aaa@aaa',
-	password: 'aaaaaa'
+	email: ENV['ADDRESS'],
+	password: ENV['PASSWORD']
 )
 
 Tag.create!(
