@@ -6,3 +6,9 @@
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
 <%= render 'layouts/sidebar' %>
+
+
+<h3>ユーザー一覧</h3>
+<% @users.each do |user| %>
+	<%= link_to user.name, user_path(user) %>
+<% end %>

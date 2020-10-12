@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_favorites_on_post_id", unique: true
+    t.index ["post_id"], name: "index_favorites_on_post_id"
     t.index ["user_id"], name: "index_favorites_on_user_id", unique: true
   end
 
@@ -99,12 +99,12 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id", null: false
-    t.integer "followed_id", null: false
+    t.integer "user_id", null: false
+    t.integer "follow_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id", unique: true
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|

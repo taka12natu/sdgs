@@ -6,6 +6,7 @@
 				<th>ユーザー</th>
 				<th>タイトル</th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -13,6 +14,7 @@
 			<tr>
 				<td><%= post.user.name %></td>
 				<td><%= post.title %></td>
+				<td>いいね <%= post.favorites.count %>件</td>
 				<td><%= link_to "詳細", post_path(post) %></td>
 			</tr>
 			<% end %>
