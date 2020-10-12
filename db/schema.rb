@@ -127,7 +127,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.string "name", null: false
     t.text "introduction"
     t.string "category"
-    t.boolean "status", default: true
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
