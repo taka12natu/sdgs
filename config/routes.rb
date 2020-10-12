@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get '/top' => 'tops#top'
+    resource :contacts, only: [:new, :create]
+    post '/contacts/confirm' => 'contacts#confirm'
+    post '/contacts/back' => 'contacts#back'
+    get '/contacts/complete' => 'contacts#complete'
+
   end
 
   devise_for :admins, controllers: {
