@@ -18,6 +18,10 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
+    if @user = current_user
+      @user.destroy
+      redirect_to action: :complete
+    end
   end
 
   def complete
@@ -25,6 +29,6 @@ class Public::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :image, :category)
+    params.require(:user).permit(:name, :introduction, :image, :category, :status)
   end
 end

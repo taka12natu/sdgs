@@ -9,8 +9,8 @@ class User < ApplicationRecord
 
   attachment :image
 
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fav_posts, through: :favorites, source: :post
 

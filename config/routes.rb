@@ -8,14 +8,16 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:show, :edit, :update] do
-            resource :favorites, only: [:create, :destroy]
-            resources :relationships, only: [:create, :destroy]
-
+      resource :favorites, only: [:create, :destroy]
+      resources :relationships, only: [:create, :destroy]
+      delete '/withdraw' => 'users#withdraw'
+      get '/complete' => 'users#complete'
     end
     resources :posts do
       resources :comments, only: [:create]
       resource :favorites, only: [:create, :destroy]
     end
+    get '/top' => 'tops#top'
   end
 
   devise_for :admins, controllers: {
@@ -31,6 +33,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:index]
   end
 
-  get '/top' => 'public/tops#top'
 
 end
