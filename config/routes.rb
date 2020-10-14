@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'public/tops#top'
+
   devise_for :users, controllers: {
         registrations: 'public/registrations',
           sessions: 'public/sessions',
