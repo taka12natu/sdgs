@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
 		elsif params[:tag_id].present?
 			@posts = Tag.find(params[:tag_id]).posts
 		else
-			@posts = Post.all
+			@posts = Post.all.page(params[:page]).per(5)
 		end
 	end
 
