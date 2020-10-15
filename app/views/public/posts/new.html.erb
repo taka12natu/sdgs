@@ -11,6 +11,8 @@
 
 	<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
 
+	<%= f.attachment_field :post_images_images, multiple: true, direct: true, presigned: true %>
+
 	<%= f.submit %>
 
 <% end %>
