@@ -11,6 +11,8 @@ class Post < ApplicationRecord
 	belongs_to :user
 	belongs_to :goal
 
+	default_scope -> { order(created_at: :desc) }
+
 	def self.search(word)
 		if word
 			where(['title LIKE ?', "#{word}%"])
