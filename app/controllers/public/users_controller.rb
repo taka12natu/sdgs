@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
     @fav_posts = @user.fav_posts
     @posts = @user.posts
     @follow_users = @user.followings
+    @notifications = Notification.where(visited_id: current_user.id, checked: false)
   end
 
   def edit

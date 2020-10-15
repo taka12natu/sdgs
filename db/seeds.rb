@@ -20,6 +20,13 @@ User.create!(
 	category: :other
 )
 
+User.create!(
+	name: 'ddd',
+	email: 'ddd@ddd',
+	password: 'dddddd',
+	category: :individual
+)
+
 Admin.create!(
 	email: ENV['ADDRESS'],
 	password: ENV['PASSWORD']

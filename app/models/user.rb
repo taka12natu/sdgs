@@ -14,9 +14,16 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :fav_posts, through: :favorites, source: :post
 
+#フォロー機能
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
-  # フォロワー表示機能は実装予定ないので、ここまで
+  has_many :reverce_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+  has_many :followers, through: :reverce_relationships, source: :user
+
+
+#通知機能
+  has_many :active_notification, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notification, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   def self.search(word)
     if word

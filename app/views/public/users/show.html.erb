@@ -54,3 +54,6 @@
 <% if @user == current_user %>
 	<%= link_to "退会", user_withdraw_path(@user), method: :delete %>
 <% end %>
+
+<p>未読通知：
+<%= link_to "#{@notifications.count}件", notifications_path %></p>

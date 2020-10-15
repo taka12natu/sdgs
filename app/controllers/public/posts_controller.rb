@@ -26,6 +26,13 @@ class Public::PostsController < ApplicationController
 		@post = Post.new(post_params)
 		@post.user_id = current_user.id
 		@post.save
+		#フォロワーに投稿通知を送信
+		followed_users = current_user.followers
+		if followed_users
+			followed_users.each do |followed_user|
+				Notification.create(visitor_id: current_user.id, visited_id: followed_user.id, post_id: @post.id, action: "post")
+			end
+		end
 		redirect_to post_path(@post)
 	end
 

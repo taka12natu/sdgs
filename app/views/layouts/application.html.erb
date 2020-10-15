@@ -13,6 +13,7 @@
     <header>
       <% if user_signed_in? %>
       <p>ログインユーザー：<%= current_user.name %></p>
+      <%= link_to "MyPage", user_path(current_user) %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <%= link_to "top", top_path %>
         <%= link_to "問い合わせ", new_contacts_path %>

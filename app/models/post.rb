@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 	has_many :favorites, dependent: :destroy
 	has_many :tags, through: :post_tags
 	accepts_nested_attributes_for :post_tags, allow_destroy: true
-
+	has_many :notifications, dependent: :destroy
 	belongs_to :user
 	belongs_to :goal
 
