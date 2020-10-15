@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     post '/contacts/confirm' => 'contacts#confirm'
     post '/contacts/back' => 'contacts#back'
     get '/contacts/complete' => 'contacts#complete'
-
+    resources :notifications, only: [:index]
   end
 
   devise_for :admins, controllers: {

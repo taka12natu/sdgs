@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_notifications_on_comment_id", unique: true
-    t.index ["post_id"], name: "index_notifications_on_post_id", unique: true
-    t.index ["visited_id"], name: "index_notifications_on_visited_id", unique: true
-    t.index ["visitor_id"], name: "index_notifications_on_visitor_id", unique: true
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "post_images", force: :cascade do |t|
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_posts_on_title", unique: true
+    t.index ["title"], name: "index_posts_on_title"
   end
 
   create_table "relationships", force: :cascade do |t|

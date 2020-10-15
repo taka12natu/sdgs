@@ -10,10 +10,10 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-      add_index :notifications, :visitor_id, unique: true
-      add_index :notifications, :visited_id, unique: true
-      add_index :notifications, :post_id, unique: true
-      add_index :notifications, :comment_id, unique: true
+      add_index :notifications, :visitor_id
+      add_index :notifications, :visited_id
+      add_index :notifications, :post_id
+      add_index :notifications, :comment_id
 
   end
 end
