@@ -10,21 +10,21 @@ User.create!(
 	name: 'aaa',
 	email: 'aaa@aaa',
 	password: 'aaaaaa',
-	category: :other
+	affiliation: :other
 )
 
 User.create!(
 	name: 'sss',
 	email: 'sss@sss',
 	password: 'ssssss',
-	category: :other
+	affiliation: :other
 )
 
 User.create!(
 	name: 'ddd',
 	email: 'ddd@ddd',
 	password: 'dddddd',
-	category: :individual
+	affiliation: :individual
 )
 
 Admin.create!(

@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
-  validates :category, presence: true
+  validates :affiliation, presence: true
 
   attachment :image
 
@@ -35,6 +35,16 @@ class User < ApplicationRecord
 
   def following?(other_user)
     self.followings.include?(other_user)
+  end
+
+  def affiliation_display
+    if affiliation == "individual"
+      "個人"
+    elsif affiliation == "company"
+      "企業"
+    elsif affiliation == "other"
+      "その他"
+    end
   end
 
 end

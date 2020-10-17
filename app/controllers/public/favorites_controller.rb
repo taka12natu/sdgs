@@ -14,4 +14,9 @@ class Public::FavoritesController < ApplicationController
 		redirect_to request.referer
 	end
 
+	def index
+	    @user = User.find(params[:user_id])
+        @fav_posts = @user.fav_posts
+    end
+
 end

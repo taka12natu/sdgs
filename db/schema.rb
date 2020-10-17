@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.text "introduction"
-    t.string "category"
+    t.string "affiliation", null: false
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

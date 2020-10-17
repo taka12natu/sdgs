@@ -9,31 +9,62 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
     <header>
-      <% if user_signed_in? %>
-      <p>ログインユーザー：<%= current_user.name %></p>
-      <%= link_to "MyPage", user_path(current_user) %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <%= link_to "top", top_path %>
-        <%= link_to "問い合わせ", new_contacts_path %>
-      <% elsif admin_signed_in?  %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        <!-- 検索機能 -->
-         <%= form_tag(admins_search_path, method: :get) do %>
-          <%= text_field_tag :word %>
-          <%= select_tag 'range', options_for_select([["ユーザー", "user"], ["投稿", "post"], ["コメント", "comment"]]) %>
-          <%= submit_tag "検索" %>
-        <% end %>
-        <!--  -->
-      <% else %>
-        <%= link_to "ログイン", new_user_session_path %>
-        <%= link_to "新規登録", new_user_registration_path %>
-        <%= link_to "問い合わせ", new_contacts_path %>
-
-      <% end %>
-
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'PF_logo.png', alt: "no_image.jpg", class: "navbar-brand" %>
+          </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item active">
+                <p class="nav-link text-dark">ログインユーザー：<%= current_user.name %><span class="sr-only">(current)</span></p>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Mypage", user_path(current_user),class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Top", top_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+            </li>
+          <% elsif admin_signed_in?  %>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
+            </li>
+            <!-- 検索機能 -->
+            <div class="form-inline my-2 my-lg-0">
+              <%= form_tag(admins_search_path, method: :get) do %>
+                <%= text_field_tag :word, '', class: 'form-control mr-sm-2' %>
+                <%= select_tag 'range', options_for_select([["ユーザー", "user"], ["投稿", "post"], ["コメント", "comment"]]) %>
+                <%= submit_tag "検索", class: 'btn btn-outline-success my-2 my-sm-0' %>
+              <% end %>
+            </div>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+      </nav>
     </header>
-    <%= yield %>
-  </body>
+
+    <body class="bg-light", style="padding-top: 80px;">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </body>
 </html>
