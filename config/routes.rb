@@ -10,10 +10,13 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:show, :edit, :update] do
-      resource :favorites, only: [:create, :destroy]
+      resources :favorites, only: [:index]
       resources :relationships, only: [:create, :destroy]
       delete '/withdraw' => 'users#withdraw'
       get '/complete' => 'users#complete'
+      get '/my_post' => 'users#my_post'
+      get '/favorite_post' => 'users#favorite_post'
+      get '/following' => 'users#following'
     end
     resources :posts do
       resources :comments, only: [:create]
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
     post '/contacts/back' => 'contacts#back'
     get '/contacts/complete' => 'contacts#complete'
     resources :notifications, only: [:index]
+
   end
 
   devise_for :admins, controllers: {

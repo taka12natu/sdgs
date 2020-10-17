@@ -1,0 +1,33 @@
+	<div class="card">
+	  	<%= attachment_image_tag(user, :image, fallback: "no_image.jpg", class: "card-img-top") %>
+		<div class="card-body">
+			<h5 class="card-title">ユーザー：
+			<%= user.name %></h5>
+			<p class="card-text"><%= user.introduction %></p>
+		</div>
+		<ul class="list-group list-group-flush">
+    		<li class="list-group-item">
+    			所属:<%= user.affiliation_display %>
+			</li>
+    		<li class="list-group-item">
+				<%= link_to "投稿一覧", user_my_post_path(user), class: "text-dark" %>
+			</li>
+    		<li class="list-group-item">
+				<%= link_to "お気に入り投稿", user_favorite_post_path(user), class: "text-dark" %>
+			</li>
+    		<li class="list-group-item">
+				<%= link_to "フォローユーザー", user_following_path(user), choose: "following", class: "text-dark" %>
+			</li>
+    		<li class="list-group-item">
+				<%= link_to "プロフィール編集", edit_user_path(user), class: "text-dark" %>
+			</li>
+		</ul>
+		<%= link_to "投稿", new_post_path, class: "btn btn-md btn-primary btn-block" %>
+		<% if current_user != user %>
+			<% if current_user.following?(user) %>
+				<%= link_to "unfollow", user_relationship_path(user), method: :delete, class: "btn btn-md btn-danger btn-block" %>
+			<% else %>
+				<%= link_to "follow", user_relationships_path(user), method: :post, class: "btn btn-md btn-primary btn-block" %>
+			<% end %>
+		<% end %>
+	</div>

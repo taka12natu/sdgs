@@ -1,59 +1,24 @@
-<h1>my page</h1>
+<div class="row">
 
-<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100') %>
+	<div class="col-3">
+		<%= render 'public/users/mypage_side', user: @user  %>
+	</div>
 
-<p>ユーザー名</p>
-<%= @user.name %>
+	<div class="col-9">
+		<h1>My Page</h1>
+		<%= link_to notifications_path, class: "btn btn-primary" do %>
+		未読通知：<span class="badge badge-pill badge-primary"><%= @notifications.count %>件</span>
+		<% end %>
 
-<p>プロフィール</p>
-<%= @user.introduction %>
+		<% if @choose == "post" %>
+			<%= render 'public/posts/index', posts: @posts %>
+		<% elsif @choose == "favorite" %>
+			<%= render 'public/favorites/index', fav_posts: @fav_posts %>
+		<% elsif @choose == "following" %>
+			<div id="following_js">
+			<%= render 'public/users/following', follow_users: @follow_users %>
+			</div>
+		<% end  %>
+	</div>
 
-<p>所属</p>
-<%= @user.category %>
-
-<%= link_to "編集", edit_user_path(@user) %>
-
-
-<%= link_to "投稿", new_post_path %>
-
-<p>お気に入り投稿</p>
-<% @fav_posts.each do |fav_post| %>
-	<%= fav_post.title %>
-<% end %>
-
-<% if current_user != @user %>
-	<% if current_user.following?(@user) %>
-		<%= link_to "unfollow", user_relationship_path(@user), method: :delete %>
-	<% else %>
-		<%= link_to "follow", user_relationships_path(@user), method: :post %>
-	<% end %>
-<% end %>
-
-<p>フォローユーザー</p>
-<% @follow_users.each do |follow_user| %>
-	<%= follow_user.name %>
-<% end %>
-
-<p>投稿一覧</p>
-	<table>
-		<thead>
-			<tr>
-				<th>タイトル</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @posts.each do |post| %>
-			<tr>
-				<td><%= post.title %></td>
-				<td><%= link_to "詳細", post_path(post) %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-<% if @user == current_user %>
-	<%= link_to "退会", user_withdraw_path(@user), method: :delete %>
-<% end %>
-
-<p>未読通知：
-<%= link_to "#{@notifications.count}件", notifications_path %></p>
+</div>

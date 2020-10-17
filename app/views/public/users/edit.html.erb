@@ -23,4 +23,7 @@
   <%= f.submit "送信" %>
 <% end %>
 
+<%= link_to "退会", user_withdraw_path(@user), method: :delete %>
+
+
 <%= link_to "back", user_path(@user) %>
