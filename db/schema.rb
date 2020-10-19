@@ -54,7 +54,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_044758) do
 
   create_table "goals", force: :cascade do |t|
     t.string "name", null: false
-    t.string "image", null: false
+    t.string "image"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

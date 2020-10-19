@@ -3,12 +3,12 @@ class Public::PostsController < ApplicationController
 	def index
 		#キーワード検索時
 		if params[:word].present?
-			@posts = Post.search(params[:word])
+			@posts = Post.search(params[:word]).order("created_at desc").page(params[:page]).per(5)
 		#タグ検索時
 		elsif params[:tag_id].present?
-			@posts = Tag.find(params[:tag_id]).posts
+			@posts = Tag.find(params[:tag_id]).posts.order("created_at desc").page(params[:page]).per(5)
 		else
-			@posts = Post.all.page(params[:page]).per(5)
+			@posts = Post.all.order("created_at desc").page(params[:page]).per(5)
 		end
 	end
 
@@ -16,6 +16,9 @@ class Public::PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@comments = @post.comments
 		@comment = Comment.new
+
+		rank = Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)
+		@top_fav_post = Post.find(rank)
 	end
 
 	def new

@@ -1,10 +1,52 @@
-<p>キーワード検索</p>
+ <div class="card my-4">
+    <h5 class="card-header">検索</h5>
+    <div class="card-body">
 	<%= form_tag(posts_path, method: :get) do %>
-		<%= text_field_tag :word %>
-		<%= submit_tag "検索" %>
+    	<div class="input-group">
+			<%= text_field_tag :word, "", class: "form-control", placeholder: "Search for..." %>
+			<div class="input-group-append">
+				<%= submit_tag "検索", class: "btn btn-secondary" %>
+			</div>
+		</div>
 	<% end %>
+	</div>
+</div>
 
-<p>タグ検索</p>
-<% Tag.all.each do |tag| %>
-	<%= link_to tag.name, posts_path(tag_id: tag.id) %><br>
-<% end %>
+<div class="card my-4">
+    <h5 class="card-header">タグ検索</h5>
+    <div class="card-body">
+		<% Tag.all.each do |tag| %>
+			<%= link_to posts_path(tag_id: tag.id) do %>
+				<span class="badge badge-pill badge-primary text-white p-2 mb-2">
+					#<%= tag.name %>
+				</span>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+<div class="card my-4">
+    <h5 class="card-header">人気投稿</h5>
+		<% @top_fav_post.each do |post| %>
+			<div class="card m-2">
+				<% if post.post_images.present? %>
+					<% @post.post_images.first(1).each do |image| %>
+						<%= attachment_image_tag image, :image, class: "card-image-top img-fluid" %>
+					<% end %>
+				<% else %>
+					<%= image_tag "no_image.jpg", class: "card-image-top img-fluid" %>
+				<% end %>
+			  	<div class="card-body">
+			    	<h4 class="card-title"><small><%= post.title %></small></h4>
+			    	<p class="card-text">
+			      		<small><%= post.body.truncate(45) %></small>
+			    	</p>
+			    </div>
+			    <div class="card-subtitle">
+			    	<i class="fas fa-heart text-danger ml-3"></i>
+			    	<%= post.favorites.count %>
+			    	<%= link_to "表示", post_path(post), class: "btn btn-primary btn-sm float-right mr-2 mb-2" %>
+			  	</div>
+			</div>
+		<% end %>
+</div>
