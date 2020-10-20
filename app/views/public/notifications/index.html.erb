@@ -1,6 +1,22 @@
-<% @notifications.each do |notification|  %>
-	<p><%= notification.display_text %></p>
-<% end %>
 
 
+<div class="row">
 
+	<div class="col-3">
+		<%= render 'public/users/mypage_side', user: current_user  %>
+	</div>
+
+	<div class="col-9 pl-5">
+		<h3 class="mb-4">通知一覧</h3>
+			<% @notifications.each do |notification|  %>
+				<div class="media my-1">
+					<%= attachment_image_tag(notification.visitor, :image, :fill, 50, 50, fallback: "no_image.jpg", size:"50x50", class: "d-flex mr-3 rounded img-fluid") %>
+          			<div class="media-body">
+            			<h5 class="mt-0"><%= notification.display_text %></h5>
+          			</div>
+        		</div>
+        		<hr>
+        	<% end %>
+        <%= paginate @notifications %>
+	</div>
+</div>

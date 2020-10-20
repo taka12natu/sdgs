@@ -20,6 +20,7 @@
 
 $(document).on('turbolinks:load', function() {
 
+  // 画像プレビュ
   $(function () {
     function readURL(input) {
       if (input.files && input.files[0]) {
@@ -35,6 +36,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
+  // TOPに戻る
   $(function() {
     $('#back-to-top a').on('click',function(event){
       $('body, html').animate({
@@ -44,6 +46,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
+  // スクロール
   $(function () {
       $('a[href^="#"]').click(function () {
           var speed = 500;
@@ -53,6 +56,26 @@ $(document).on('turbolinks:load', function() {
           $("html, body").animate({scrollTop:position}, speed, 'swing');
           return false;
       });
+  });
+
+  $(function() {
+    new Swiper('.swiper-container', {
+
+        // Optional parameters
+        slidesPerView: 3,
+        autoplay: true,
+        speed: 1000,
+        loop: true,
+
+        pagination: {
+            el: '.swiper-pagination',
+        type: 'bullets',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    });
   });
 
 });

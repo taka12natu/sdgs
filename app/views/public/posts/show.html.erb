@@ -21,12 +21,22 @@
 		<p class="lead"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
 
 		<% if @post.post_images.present? %>
-		<div class="">
-		  <% @post.post_images.each do |image| %>
-		    <%= attachment_image_tag image, :image, :fill, 400, 400, class: "m-1 img-fluid" %>
-		  <% end %>
-		</div>
+			<div class="row">
+			  <div class="swiper-container">
+			      <div class="swiper-wrapper">
+			          <% @post.post_images.each do |image| %>
+			            <div class="swiper-slide">
+			              <%= attachment_image_tag image, :image, :fill, 300, 300, fallback: "no_image.jpg", class: "" %>
+			            </div>
+			          <% end %>
+			      </div>
+			      <div class="swiper-pagination"></div>
+			      <div class="swiper-button-prev text-light"></div>
+			      <div class="swiper-button-next text-light"></div>
+			  </div>
+			</div>
 		<% end %>
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
 		<p class="mt-4">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
