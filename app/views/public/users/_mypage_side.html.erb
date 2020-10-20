@@ -1,9 +1,12 @@
 	<div class="card">
 	  	<%= attachment_image_tag(user, :image, fallback: "no_image.jpg", class: "card-img-top") %>
 		<div class="card-body">
-			<h5 class="card-title">ユーザー：
-			<%= user.name %></h5>
-			<p class="card-text"><%= user.introduction %></p>
+			<h5 class="card-title">ユーザー：<%= user.name %></h5>
+			<div class="card-text">
+				<% if user.introduction.present? %>
+					<%=safe_join(user.introduction.split("\n"),tag(:br))%>
+				<% end %>
+			</div>
 		</div>
 		<ul class="list-group list-group-flush">
     		<li class="list-group-item">

@@ -4,10 +4,11 @@
     <title>Sdgs</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
     <header>
       <nav class="navbar navbar-expand-lg fixed-top">
@@ -32,6 +33,14 @@
             </li>
             <li class="nav-item">
               <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to notifications_path do %>
+              <div class="notification-badge">
+                <i class="far fa-envelope fa-2x text-dark"></i>
+                <span class="badge badge-pill badge-primary pos"><%= Notification.where(visited_id: current_user.id, checked: false).count %></span>
+              </div>
+              <% end %>
             </li>
           <% elsif admin_signed_in?  %>
             <li class="nav-item">
@@ -63,8 +72,14 @@
     </header>
 
     <body class="bg-light", style="padding-top: 80px;">
-      <div class="container">
+      <div class="container mt-3">
         <%= yield %>
       </div>
+      <span id="back-to-top">
+      <a href="#">
+        <i class="fas fa-arrow-circle-up fa-3x text-secondary"></i>
+      </a>
+</span>
+
     </body>
 </html>

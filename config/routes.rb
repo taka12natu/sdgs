@@ -22,13 +22,13 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
       resource :favorites, only: [:create, :destroy]
     end
-    get '/top' => 'tops#top'
+    get '/top' => 'tops#top' #collection do :confirmで記述できそう
     resource :contacts, only: [:new, :create]
     post '/contacts/confirm' => 'contacts#confirm'
     post '/contacts/back' => 'contacts#back'
     get '/contacts/complete' => 'contacts#complete'
     resources :notifications, only: [:index]
-
+    resources :goals, only: [:index, :show]
   end
 
   devise_for :admins, controllers: {

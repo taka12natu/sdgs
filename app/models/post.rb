@@ -11,8 +11,6 @@ class Post < ApplicationRecord
 	belongs_to :user
 	belongs_to :goal
 
-	default_scope -> { order(created_at: :desc) }
-
 	def self.search(word)
 		if word
 			where(['title LIKE ?', "#{word}%"])
@@ -21,7 +19,11 @@ class Post < ApplicationRecord
 		end
 	end
 
-	def favorited_by?(user)
-		favorites.where(user_id: user.id).exists?
+	def favorited_by?(user,post)
+		favorites.where(user_id: user.id, post_id: post.id).exists?
+	end
+
+	def fav_post_rank
+
 	end
 end

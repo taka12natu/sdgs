@@ -6,19 +6,6 @@
 
 	<div class="col-9">
 		<h1>My Page</h1>
-		<%= link_to notifications_path, class: "btn btn-primary" do %>
-		未読通知：<span class="badge badge-pill badge-primary"><%= @notifications.count %>件</span>
-		<% end %>
-
-		<% if @choose == "post" %>
-			<%= render 'public/posts/index', posts: @posts %>
-		<% elsif @choose == "favorite" %>
-			<%= render 'public/favorites/index', fav_posts: @fav_posts %>
-		<% elsif @choose == "following" %>
-			<div id="following_js">
-			<%= render 'public/users/following', follow_users: @follow_users %>
-			</div>
-		<% end  %>
 	</div>
 
 </div>

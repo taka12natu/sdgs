@@ -3,7 +3,7 @@ class Public::FavoritesController < ApplicationController
 	def create
 		@post = Post.find(params[:post_id])
 		@favorite = Favorite.create(user_id: current_user.id, post_id: @post.id)
-		Notification.create!(visitor_id: current_user.id, visited_id: @post.user.id, post_id: @post.id, action: "favorite")
+		Notification.create(visitor_id: current_user.id, visited_id: @post.user.id, post_id: @post.id, action: "favorite")
 		redirect_to request.referer
 	end
 

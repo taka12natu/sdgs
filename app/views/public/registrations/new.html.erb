@@ -34,7 +34,7 @@
 
 <!-- カテゴリーよりorganizationかbelongingの方が良いかも -->
   <div class="form-group">
-    <%= f.label :所属, class: "form-label" %>
+    <%= f.label :所属, class: "form-label" %><br>
     <%= f.radio_button :affiliation, :individual, checked: true %>
     <%= f.label :affiliation, "個人", value: :individual, class: "d-inline-block" %>
     <%= f.radio_button :affiliation, :company %>

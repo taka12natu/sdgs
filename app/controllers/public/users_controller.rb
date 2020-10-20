@@ -14,7 +14,7 @@ class Public::UsersController < ApplicationController
   def favorite_post
     @user = User.find(params[:user_id])
     @notifications = Notification.where(visited_id: current_user.id, checked: false)
-    @fav_posts = @user.fav_posts
+    @fav_posts = @user.fav_posts.page(params[:page]).per(5)
   end
 
   def following
@@ -22,7 +22,6 @@ class Public::UsersController < ApplicationController
     @notifications = Notification.where(visited_id: current_user.id, checked: false)
     @follow_users = @user.followings
   end
-
 
   def edit
     @user = current_user
@@ -46,6 +45,6 @@ class Public::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :image, :category, :status)
+    params.require(:user).permit(:name, :introduction, :image, :affiliation, :status)
   end
 end
