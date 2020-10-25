@@ -6,5 +6,6 @@ class Admins::PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+  	redirect_to "/users/post/#{@post.id}"
   end
 end

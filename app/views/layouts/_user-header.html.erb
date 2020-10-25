@@ -1,0 +1,64 @@
+        <nav class="navbar navbar-expand-lg fixed-top bg-light">
+          <div class="container">
+            <div class="navbar-brand mt-0 pt-0">
+              <%= link_to root_path do %>
+                <%= image_tag 'PF_logo_new.png', alt: "no_image.jpg", class: "mt-0 pt-0" %>
+              <% end %>
+            </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav nav-tab ml-auto border-bottom">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "投稿を見る", posts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "SDGsを知る", goals_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "発信する", new_post_path, class: "nav-link text-dark" %>
+              </li>
+               <li class="nav-item">
+                <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <div class="dropdown my-2 ml-2">
+                  <a class="dropdown-toggle text-dark" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                      <%= current_user.name %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <%= link_to "マイページ", user_path(current_user),class: "text-dark dropdown-item" %>
+                    <%= link_to "プロフィール編集", edit_user_path(current_user),class: "text-dark dropdown-item" %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark dropdown-item" %>
+                  </div>
+                </div>
+              </li>
+               <li class="nav-item">
+                <%= link_to notifications_path do %>
+                  <div class="notification-badge ml-3">
+                    <i class="far fa-bell text-dark mail-icon-size my-2"></i>
+                    <span class="badge badge-pill badge-primary pos my-1"><%= Notification.where(visited_id: current_user.id, checked: false).count %></span>
+                  </div>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "投稿を見る", posts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "SDGsを知る", goals_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+        </nav>

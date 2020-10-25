@@ -11,43 +11,7 @@
 </head>
 
     <header>
-      <nav class="navbar navbar-expand-lg fixed-top bg-dark">
-        <div class="container-fluid">
-          <%= link_to "Our SDGs", admins_top_path, class: "navbar-brand float-left text-white" %>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mr-3">
-            <% if admin_signed_in?  %>
-              <li class="nav-item">
-                <%= link_to "User", admins_users_path,class: "nav-link text-white" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "post", admins_posts_path,class: "nav-link text-white" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Comment", admins_comments_path,class: "nav-link text-white" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Contact", admins_contacts_path,class: "nav-link text-white" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Tag", admins_tags_path,class: "nav-link text-white" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white" %>
-              </li>
-              <!-- 検索機能 -->
-              <div class="form-inline my-2 my-lg-0">
-                <%= form_tag(admins_search_path, method: :get) do %>
-                  <%= select_tag 'range', options_for_select([["ユーザー", "user"], ["投稿", "post"], ["コメント", "comment"]]), {class: "form-control"} %>
-                  <%= text_field_tag :word, '', class: 'form-control mr-sm-2' %>
-                  <%= submit_tag "検索", class: 'btn btn-outline-success my-2 my-sm-0' %>
-                <% end %>
-              </div>
-            <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <%= render 'layouts/admin-header' %>
     </header>
 
     <body class="bg-white", style="padding-top: 60px;">

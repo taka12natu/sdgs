@@ -15,21 +15,57 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto border-top border-bottom">
-            <li class="nav-item">
-              <%= link_to "#top-scroll_1", class: "nav-link text-secondary" do %>SDGsを知る<% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "#top-scroll_2", class: "nav-link text-secondary" do %>取り組みを発信する<% end %>
-            </li>
-            <li class="nav-item">
-               <%= link_to "#top-scroll_3", class: "nav-link text-secondary" do %>取り組みを見る<% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "#top-scroll_4", class: "nav-link text-secondary" do %>ともに考える<% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: "nav-link text-secondary" %>
-            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "投稿を見る", posts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "SDGsを知る", goals_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "発信する", new_post_path, class: "nav-link text-dark" %>
+              </li>
+               <li class="nav-item">
+                <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <div class="dropdown my-2 ml-2">
+                  <a class="dropdown-toggle text-dark" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                      <%= current_user.name %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <%= link_to "マイページ", user_path(current_user),class: "text-dark dropdown-item" %>
+                    <%= link_to "プロフィール編集", edit_user_path(current_user),class: "text-dark dropdown-item" %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark dropdown-item" %>
+                  </div>
+                </div>
+              </li>
+               <li class="nav-item">
+                <%= link_to notifications_path do %>
+                  <div class="notification-badge ml-3">
+                    <i class="far fa-bell text-dark mail-icon-size my-2"></i>
+                    <span class="badge badge-pill badge-primary pos my-1"><%= Notification.where(visited_id: current_user.id, checked: false).count %></span>
+                  </div>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "#top-scroll_1", class: "nav-link text-secondary" do %>SDGsを知る<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "#top-scroll_2", class: "nav-link text-secondary" do %>取り組みを発信する<% end %>
+              </li>
+              <li class="nav-item">
+                 <%= link_to "#top-scroll_3", class: "nav-link text-secondary" do %>取り組みを見る<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "#top-scroll_4", class: "nav-link text-secondary" do %>ともに考える<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link text-secondary" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

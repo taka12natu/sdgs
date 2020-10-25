@@ -14,7 +14,7 @@
 	<div class="form-group form-row">
 		<%= f.label :目標, class: "form-label" %>
 		<%= f.collection_select :goal_id, Goal.all, :id, :name,
-        {prompt: ""}, {class: "form-control"} %>
+        {prompt: "選択してください"}, {class: "form-control"} %>
         		<div class="invalid-feedback">必須</div>
 
 	</div>
