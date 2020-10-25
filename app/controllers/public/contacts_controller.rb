@@ -15,9 +15,12 @@ class Public::ContactsController < ApplicationController
 
 	def create
 		@contact = Contact.new(contact_params)
-		@contact.save
-		 ConfirmMailer.send_confirm(@contact).deliver
-		redirect_to contacts_complete_path
+		if @contact.save
+			ConfirmMailer.send_confirm(@contact).deliver
+			redirect_to contacts_complete_path
+		else
+			render :new
+		end
 	end
 
 	def complete

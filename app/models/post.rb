@@ -11,6 +11,9 @@ class Post < ApplicationRecord
 	belongs_to :user
 	belongs_to :goal
 
+	validates :title, presence: true
+	validates :body, presence: true
+
 	def self.search(word)
 		if word
 			where(['title LIKE ?', "#{word}%"])

@@ -6,6 +6,8 @@
 
 		<h3 class="pb-2 card-title">お問い合わせフォーム</h3>
 
+		<%= render 'layouts/error', model: @contact %>
+
   		<%= form_for(@contact, url: contacts_confirm_path) do |f|  %>
   			<div class="form-group">
 				<%= f.label :名前, class: "form-label" %>

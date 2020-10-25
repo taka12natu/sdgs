@@ -1,4 +1,6 @@
 class Contact < ApplicationRecord
-
-	# enum category: {サービスについて: 0, サイト不具合: 1, 要望: 2, 誹謗中傷コメントの報告: 3}
+	validates :name, presence: true
+	validates :email, presence: true
+	validates :content, presence: true
+	validates :category, presence: true
 end

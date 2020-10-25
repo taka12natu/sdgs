@@ -1,0 +1,29 @@
+<h2>問い合わせ一覧</h2>
+
+	<table class="table mt-2">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>カテゴリ</th>
+				<th>ユーザー</th>
+				<th>Email</th>
+				<th>問い合わせ日</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @contacts.each do |contact| %>
+			<tr>
+				<td><%= contact.id %></td>
+				<td><%= contact.category %></td>
+				<td><%= contact.name %></td>
+				<td><%= contact.email %></td>
+				<td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+				<td><%= link_to "詳細", contact_path(contact), class: "btn btn-outline-secondary" %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+
+<%= paginate @contacts %>

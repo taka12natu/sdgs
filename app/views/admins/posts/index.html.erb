@@ -1,22 +1,32 @@
-<h1>投稿一覧</h1>
+<h2>投稿一覧</h2>
 
-	<table>
-		<thead>
+	<table class="table mt-2">
+		<thead class="thead-dark">
 			<tr>
-				<th>ユーザー</th>
+				<th>投稿ID</th>
 				<th>タイトル</th>
+				<th>ユーザー</th>
+				<th>お気に入り数</th>
+				<th>コメント数</th>
+				<th>投稿日</th>
+				<th></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @posts.each do |post| %>
 			<tr>
+				<td><%= post.id %></td>
+				<td><%= post.title.truncate(10) %></td>
 				<td><%= post.user.name %></td>
-				<td><%= post.title %></td>
-				<td><%= link_to "詳細", admins_post_path(post) %></td>
+				<td><%= post.favorites.count %>件</td>
+				<td><%= post.comments.count %>件</td>
+				<td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+				<td><%= link_to "詳細", post_path(post), class: "btn btn-outline-secondary" %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
 
-	<%= paginate @posts %>
+
+<%= paginate @posts %>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'public/tops#top'
+  root 'public/tops#root'
 
   devise_for :users, controllers: {
         registrations: 'public/registrations',
@@ -22,7 +22,6 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
       resource :favorites, only: [:create, :destroy]
     end
-    get '/top' => 'tops#top' #collection do :confirmで記述できそう
     resource :contacts, only: [:new, :create]
     post '/contacts/confirm' => 'contacts#confirm'
     post '/contacts/back' => 'contacts#back'
@@ -42,6 +41,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show]
     resources :users, only: [:index, :show]
     resources :comments, only: [:index]
+    resources :contacts, only: [:index, :show]
   end
 
 

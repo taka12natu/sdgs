@@ -9,10 +9,10 @@
 	<div class="col-9 pl-5">
 		<h3 class="mb-4">通知一覧</h3>
 			<% @notifications.each do |notification|  %>
-				<div class="media my-1">
+				<div class="media my-1 shadow p-2">
 					<%= attachment_image_tag(notification.visitor, :image, :fill, 50, 50, fallback: "no_image.jpg", size:"50x50", class: "d-flex mr-3 rounded img-fluid") %>
           			<div class="media-body">
-            			<h5 class="mt-0"><%= notification.display_text %></h5>
+            			<h5 class="mt-0"><%= notification.display_text %><span class="float-right"><small><%= notification.created_at.strftime('%Y/%m/%d') %></small></span></h5>
           			</div>
         		</div>
         		<hr>
