@@ -46,20 +46,31 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  // スクロール
+  // goal index スクロール
   $(function () {
-      $('a[href^="#"]').click(function () {
+      $('a[href^="#scroll"]').click(function () {
           var speed = 500;
           var href= $(this).attr("href");
           var target = $(href == "#" || href == "" ? 'html' : href);
-          var position = target.offset().top;
+          var position = target.offset().top - 80;
+          $("html, body").animate({scrollTop:position}, speed, 'swing');
+          return false;
+      });
+  });
+// top スクロール
+  $(function () {
+      $('a[href^="#top-scroll"]').click(function () {
+          var speed = 900;
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top - 30;
           $("html, body").animate({scrollTop:position}, speed, 'swing');
           return false;
       });
   });
 
   $(function() {
-    new Swiper('.swiper-container', {
+    new Swiper('.post-image-slide', {
 
         // Optional parameters
         slidesPerView: 3,
@@ -77,5 +88,19 @@ $(document).on('turbolinks:load', function() {
       }
     });
   });
+
+// トップのテキストのfadein
+ $(window).scroll(function (){
+      var  scroll = $(window).scrollTop(),
+           windowHeight = $(window).height();
+    $('.jumbotron-container-2').each(function(){
+        var elemPos = $(this).offset().top;
+          if (scroll > elemPos - windowHeight + 100){
+              $(this).addClass("fade_on");
+            }
+        });
+    });
+
+
 
 });

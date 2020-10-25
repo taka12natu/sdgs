@@ -5,10 +5,48 @@
 		</p>
 </div>
 
-<div class="h3">新着投稿</div>
+<div class="h3 mt-4">新着投稿</div>
+  <div class="row">
+    <div class="swiper-container post-image-slide">
+        <div class="swiper-wrapper">
+            <% @goal_posts.first(5).each do |post| %>
+              <div class="swiper-slide">
+                <div class="card py-3 m-2">
+                  <% if post.post_images.present? %>
+                    <%= link_to post_path(post) do %>
+                      <% post.post_images.first(1).each do |image| %>
+                          <%= attachment_image_tag image, :image, class: "card-image-top img-fluid card-img-hover" %>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to post_path(post) do %>
+                      <%= image_tag "no_image.jpg", class: "card-image-top img-fluid card-img-hover" %>
+                    <% end %>
+                  <% end %>
+                    <div class="card-body">
+                      <h4 class="card-title text-truncate"><small><%= post.title %></small></h4>
+                      <p class="card-text text-truncate">
+                          <small><%= post.body %></small>
+                      </p>
+                    </div>
+                    <div class="card-subtitle">
+                      <i class="fas fa-heart text-danger ml-3"></i>
+                        <%= post.favorites.count %>
+                      <i class="far fa-comments ml-1"></i>
+                        <%= post.comments.count %>
+                      <%= link_to "表示", post_path(post), class: "btn btn-outline-dark btn-sm float-right mr-2 mb-2" %>
+                    </div>
+                </div>
+              </div>
+            <% end %>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev text-light"></div>
+        <div class="swiper-button-next text-light"></div>
+    </div>
+  </div>
 
-
-<div class="row">
+<div class="row mt-4">
   <div class="col-9">
       <% @goal_posts.each do |goal_post| %>
         <div class="row mt-3">
@@ -25,12 +63,21 @@
               <h5 class="card-header"><%= goal_post.title %><span class="float-right"><small>投稿日:<%= goal_post.created_at.strftime('%Y/%m/%d') %></small></span></h5>
               <div class="card-body">
                   <p class="card-text"><%= goal_post.body.truncate(100) %></p>
-                  <%= link_to "全文表示", post_path(goal_post.user), class: "btn btn-outline-dark btn-sm float-right" %>
+                  <div class="d-flex justify-content-end">
+                    <div class="pt-1 mr-2">
+                      <i class="fas fa-heart text-danger"></i>
+                        <%= goal_post.favorites.count %>
+                      <i class="far fa-comments ml-1"></i>
+                        <%= goal_post.comments.count %>
+                      </div>
+                    <%= link_to "全文表示", post_path(goal_post.user), class: "btn btn-outline-dark btn-sm" %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
       <% end %>
+      <div class="d-flex justify-content-center mt-3"><%= paginate @goal_posts %></div>
   </div>
   <div class="col-3">
 <%= render 'layouts/sidebar' %>

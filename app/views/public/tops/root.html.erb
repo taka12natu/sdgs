@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sdgs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+  <header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto border-top border-bottom">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "投稿を見る", posts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "SDGsを知る", goals_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "発信する", new_post_path, class: "nav-link text-dark" %>
+              </li>
+               <li class="nav-item">
+                <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <div class="dropdown my-2 ml-2">
+                  <a class="dropdown-toggle text-dark" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                      <%= current_user.name %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <%= link_to "マイページ", user_path(current_user),class: "text-dark dropdown-item" %>
+                    <%= link_to "プロフィール編集", edit_user_path(current_user),class: "text-dark dropdown-item" %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark dropdown-item" %>
+                  </div>
+                </div>
+              </li>
+               <li class="nav-item">
+                <%= link_to notifications_path do %>
+                  <div class="notification-badge ml-3">
+                    <i class="far fa-bell text-dark mail-icon-size my-2"></i>
+                    <span class="badge badge-pill badge-primary pos my-1"><%= Notification.where(visited_id: current_user.id, checked: false).count %></span>
+                  </div>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "#top-scroll_1", class: "nav-link text-secondary" do %>SDGsを知る<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "#top-scroll_2", class: "nav-link text-secondary" do %>取り組みを発信する<% end %>
+              </li>
+              <li class="nav-item">
+                 <%= link_to "#top-scroll_3", class: "nav-link text-secondary" do %>取り組みを見る<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "#top-scroll_4", class: "nav-link text-secondary" do %>ともに考える<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link text-secondary" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<body class="bg-white top-text top-bg-color">
+		<div class="jumbotron jumbotron-fluid jumbotron-extend">
+  			<div class="container-fluid jumbotron-container">
+    				<h1 class="display-3">Our SDGs</h1>
+    				<h3 class="mt-4">明日の未来のために、私たちができること</p>
+                </h3>
+  			</div>
+		</div>
+		<div class="jumbotron jumbotron-fluid jumbotron-extend-sub m-0 bg-white" id="top-scroll_1">
+  			<div class="container jumbotron-container-2">
+    			<h1 class="display-3"><small>SDGsを知る</small></h1>
+    			<p class="lead w-50 mt-3">SDGsとはSustainable Development Goalsの略で、日本語で「持続可能な開発目標」と訳します。地球温暖化や海洋汚染、貧困など世界的な問題が生じている中で持続可能な地球社会を維持していこうとの目的で国連によって提唱されました。全17の開発目標が提唱されています。</p>
+          <%= link_to "もっと知る", goals_path, class: "btn btn-outline-secondary mt-3" %>
+            <%= image_tag "top_read.png", class: "h-50 im-right" %>
+  			</div>
+		</div>
+		<div class="jumbotron jumbotron-fluid jumbotron-extend-sub bg-white" id="top-scroll_2">
+  			<div class="container jumbotron-container-2 text-right">
+    			<div class="text-left w-50 float-right">
+            <h1 class="display-3"><small>取り組みを発信する</small></h1>
+      			<p class="lead mt-3">SDGsは企業や個人にとって強制的なものではありません。しかし、SDGsが達成されないと私たちの未来は暗いものとなります。そして、SDGsを達成するためには国、地域、企業、個人全ての協力と連帯が必要となってきます。目標に対するあなたの取り組みや考えを発信していきましょう。</p>
+            <%= link_to "発信する", new_post_path, class: "btn btn-outline-secondary mt-3 mb-1" %>
+            <p>※投稿には<%= link_to "会員登録", new_user_registration_path %>が必要となります。</p>
+                      <%= image_tag "top_publish.png", class: "h-50 im-left" %>
+          </div>
+  			</div>
+		</div>
+		<div class="jumbotron jumbotron-fluid jumbotron-extend-sub bg-white" id="top-scroll_3">
+  			<div class="container jumbotron-container-2">
+    			<h1 class="display-3"><small>取り組みを見る</small></h1>
+    			<p class="lead w-50 mt-3">SDGsで提唱されている社会問題は多岐に渡ります。取り組みを見ることで視野を広げ、あなたにできることをより考えることのできる機会となります。
+          </p>
+          <%= link_to "取り組みを見る", posts_path, class: "btn btn-outline-secondary mt-3" %>
+          <%= image_tag "top_look.png", class: "h-50 im-right" %>
+  			</div>
+		</div>
+		<div class="jumbotron jumbotron-fluid jumbotron-extend-sub bg-white" id="top-scroll_4">
+  			<div class="container jumbotron-container-2 text-right">
+          <div class="text-left w-50 float-right">
+      			<h1 class="display-3"><small>ともに考える</small></h1>
+      			<p class="lead mt-3">SDGsの目標に対してアプローチの道筋は一つではなく無数に存在します。そして、様々な年代、国、業界や職種の人々が意見を交わすことで新たな価値が創造されるかもしれません。他の方の取り組みを見て感じたあなたの意見を発信していきましょう。</p>
+            <%= link_to "取り組みを見る", posts_path, class: "btn btn-outline-secondary mt-3" %>
+            <%= image_tag "top_think.png", class: "h-50 im-left" %>
+          </div>
+  			</div>
+		</div>
+		<div class="jumbotron jumbotron-fluid jumbotron-extend-sub bg-white top-slide">
+  			<div class="container jumbotron-container-2 text-center">
+          <div class="text-center w-75 mx-auto">
+      			<h1 class="display-3"><small>当サイトの想い</small></h1>
+      			<p class="lead mt-2">当サイトにアクセス頂きましてありがとうございます。今や多くの企業や団体がSDGsに取り組み、その様子をHP等に記載している様子を見かけます。しかし、日々の取り組みの様子を知ることができたり、双方向にコミュニケーションを取れる場、個人の見解や取り組みを発信し共有・議論できる場があれば、SDGsに対する取り組みに新しい価値が広がり、大きな動きとなっていくのではないかと思いこのサイトを立ち上げました。SDGsの目標達成は一個人や一企業の力だけでは叶いません。個人・企業・団体・地域・国の連帯が必要となってきます。そのような繋がりが目標達成への歩みを加速させることを願っています。</p>
+            <%= image_tag "the_world_is_mine.png", class: "w-50 mx-auto" %>
+          </div>
+  			</div>
+		</div>
+
+    <div class="container my-5 pt-5" style="position:relative;">
+      <div class="row">
+        <div class="d-inline text-center mx-auto">
+        <%= link_to "ログインはこちら", new_user_session_path, class: "mr-4 text-dark border-bottom" %>
+        <%= link_to "会員登録はこちら", new_user_registration_path, class: "text-dark border-bottom" %>
+        <p><small>※投稿は登録不要で閲覧できます。投稿やコメントを送信するためには登録が必要となります。</small></p>
+      </div>
+      </div>
+    </div>
+
+    <span id="back-to-top">
+      <a href="#">
+        <i class="fas fa-arrow-circle-up fa-3x text-secondary"></i>
+      </a>
+    </span>
+
+</body>
+
+<footer class="border-top">
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag 'PF_logo.png', alt: "no_image.jpg", class: "img-fluid w-75 mb-2" %>
+        <p class="m-0 b-0"><small>copyright 2020 Our SDGs.</small></p>
+      </div>
+      <div class="col-md-2">
+        <p class="font-weight-bold border-right">Menu</p>
+      </div>
+        <div class="col-md-3 navbar">
+            <ul class="navbar-nav">
+                 <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class: "text-dark" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "SDGsについて", goals_path, class: "text-dark" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "お問い合わせ", contacts_path, class: "text-dark" %>
+                  </li>
+             </ul>
+        </div>
+        <div class="col-md-3 navbar">
+          <ul class="navbar-nav">
+                <li class="nav-item">
+                  <% if user_signed_in? %>
+                    <%= link_to "マイページ", user_path(current_user), class: "text-dark" %>
+                  <% else %>
+                    <%= link_to "マイページ", new_user_registration_path, class: "text-dark" %>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "ログイン", new_user_session_path, class: "text-dark" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "会員登録", new_user_registration_path, class: "text-dark" %>
+                </li>
+           </ul>
+       </div>
+    </div>
+  </div>
+</footer>
+
+</html>
+
+
+
+
+

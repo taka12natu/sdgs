@@ -31,20 +31,22 @@
 			<div class="card m-2">
 				<% if post.post_images.present? %>
 					<% @post.post_images.first(1).each do |image| %>
-						<%= attachment_image_tag image, :image, class: "card-image-top img-fluid" %>
+						<%= attachment_image_tag image, :image, class: "card-image-top img-fluid card-img-hover" %>
 					<% end %>
 				<% else %>
-					<%= image_tag "no_image.jpg", class: "card-image-top img-fluid" %>
+					<%= image_tag "no_image.jpg", class: "card-image-top img-fluid card-img-hover" %>
 				<% end %>
 			  	<div class="card-body">
-			    	<h4 class="card-title"><small><%= post.title %></small></h4>
-			    	<p class="card-text">
-			      		<small><%= post.body.truncate(45) %></small>
+			    	<h4 class="card-title text-truncate"><small><%= post.title %></small></h4>
+			    	<p class="card-text text-truncate">
+			      		<small><%= post.body %></small>
 			    	</p>
 			    </div>
 			    <div class="card-subtitle">
 			    	<i class="fas fa-heart text-danger ml-3"></i>
-			    	<%= post.favorites.count %>
+                    	<%= post.favorites.count %>
+                    <i class="far fa-comments ml-1"></i>
+                        <%= post.comments.count %>
 			    	<%= link_to "表示", post_path(post), class: "btn btn-primary btn-sm float-right mr-2 mb-2" %>
 			  	</div>
 			</div>

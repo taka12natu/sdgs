@@ -1,0 +1,44 @@
+	<div class="card">
+    <div class="card-body p-5">
+
+		<h3 class="pb-2 card-title">お問い合わせ内容確認</h3>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<p>名前</p>
+					    <%= @contact.name %>
+				</li>
+				<li class="list-group-item">
+					<p>Email</p>
+					<%= @contact.email %>
+				</li>
+				<li class="list-group-item">
+					<p>項目</p>
+					<%= @contact.category %>
+				</li>
+				<li class="list-group-item">
+					<p>内容</p>
+				    <%= @contact.content %>
+				</li>
+			</ul>
+
+			<%= form_for(@contact, url: contacts_path, method: :post) do |f|  %>
+				<%= f.hidden_field :name %>
+				<%= f.hidden_field :email %>
+				<%= f.hidden_field :category %>
+				<%= f.hidden_field :content %>
+				<div class="form-group mt-4">
+					<%= f.submit :送信, class: "btn btn-md btn-primary btn-block" %>
+				</div>
+				<% end %>
+			<%= form_for(@contact, url: contacts_back_path) do |f|  %>
+				<%= f.hidden_field :name %>
+				<%= f.hidden_field :email %>
+				<%= f.hidden_field :category %>
+				<%= f.hidden_field :content %>
+				<div class="form-group">
+					<%= f.submit :修正する, class: "btn btn-md  btn-secondary btn-block" %>
+				</div>
+			<% end %>
+
+	</div>
+	</div>

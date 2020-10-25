@@ -1,12 +1,31 @@
-<h1>タグ管理</h1>
 
-<% @tags.each do |tag| %>
-	<table>
-			<tr><%= tag.name %></tr>
-	</table>
-<% end %>
+<div class="row">
+	<div class="col-6 offset-1">
+		<h2>タグ管理</h2>
+		<%= form_for [:admins,@tag] do |f| %>
+			<div class="form-group mt-3">
+				<%= f.text_field :name, class: "form-control", :placeholder => "タグ名を入力してください" %>
+				<%= f.submit "登録", class: "btn btn-secondary mt-3" %>
+			</div>
+		<% end %>
 
-<%= form_for [:admins,@tag] do |f| %>
-	<%= f.text_field :name %>
-	<%= f.submit %>
-<% end %>
+		<table class="table mt-5">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>タグ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @tags.each do |tag| %>
+				  <tr>
+					<td><%= tag.id %></td>
+					<td><%= tag.name %></td>
+				  </tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<%= paginate @tags %>
+</div>
+

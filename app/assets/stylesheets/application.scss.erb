@@ -1,0 +1,138 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+.navbar-brand img {
+    max-width: 100%;
+    height: 50px;
+}
+.img_prev:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(1.01, 1.01);
+}
+#back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  opacity: 0.7;
+}
+.sidebar_fixed {
+  position: sticky;
+  top: 100px;
+  height: 500px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.notification-badge {
+  position: relative;
+  opacity: 0.8;
+}
+.pos {
+  position: absolute;
+  top: 0;
+  right: -8px;
+}
+.swiper-container post-image-slide{
+    max-width: 100%;
+    height: 300px;
+}
+.swiper-container top-slide {
+    height: 300px;
+}
+.jumbotron-extend {
+    position: relative;
+    height: 100vh;
+    min-height: 300px;
+    background: url("<%= asset_path('top_hq.jpg') %>") no-repeat;
+    background-size: cover;
+}
+.jumbotron-extend-sub {
+    position: relative;
+    height: 100vh;
+    min-height: 300px;
+}
+.jumbotron-container {
+    position: relative;
+    top: 25%;
+    left: 5%;
+    transform: translateY(-50%);
+    font-family: Georgia, serif;
+}
+.jumbotron-container-2 {
+    top: 15%;
+    font-family: Georgia, serif;
+    opacity: 0;
+}
+.fade_on {
+    opacity: 1;
+    transition: 2s;
+}
+.jumbotron-container-top {
+    position: relative;
+    height: 100vh;
+    min-height: 300px;
+}
+.im-left {
+  position:absolute;
+  bottom: 5%;
+  left: 10%;
+}
+.im-right {
+  position:absolute;
+  bottom: 5%;
+  right: 10%;
+}
+.sidebar {
+  height: 100%;
+  background-color: dark;
+  position: fixed;
+}
+.mail-icon-size {
+  font-size: 1.6em;
+}
+.btn-primary:hover {
+  color: #b8daff;
+  background-color: white;
+  transition: .4s;
+}
+body {
+  color: #4c616b;
+}
+.top-text {
+    line-height: 2.0;
+}
+.card-img-hover:hover {
+  opacity: .5;
+}
+.top-bg-color {
+  background-color: #f0f6f3;
+}
+.b-0 {
+  bottom: 0;
+  position: absolute;
+}
+.wrapper {
+  min-height: calc(100vh - 220px);
+}
+footer {
+  height: 100px;
+}
+.user_img {
+  height: 50px;
+}

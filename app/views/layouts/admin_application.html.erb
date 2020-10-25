@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sdgs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+    <header>
+      <%= render 'layouts/admin-header' %>
+    </header>
+
+    <body class="bg-white", style="padding-top: 60px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-2 d-none d-md-block bg-light sidebar">
+            <%= render 'admins/side' %>
+          </div>
+          <div class="col-10 offset-2 mt-4">
+            <%= yield %>
+          </div>
+      </div>
+
+        <span id="back-to-top">
+        <a href="#">
+          <i class="fas fa-arrow-circle-up fa-3x text-secondary"></i>
+        </a>
+        </span>
+
+    </body>
+</html>

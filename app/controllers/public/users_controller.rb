@@ -1,25 +1,23 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :withdraw]
+  before_action :set, only: [:show, :my_post, :favorite_post, :following]
 
   def show
     @user = User.find(params[:id])
-    @notifications = Notification.where(visited_id: current_user.id, checked: false)
   end
 
   def my_post
     @user = User.find(params[:user_id])
-    @notifications = Notification.where(visited_id: current_user.id, checked: false)
     @posts = @user.posts.page(params[:page]).per(5)
   end
 
   def favorite_post
     @user = User.find(params[:user_id])
-    @notifications = Notification.where(visited_id: current_user.id, checked: false)
     @fav_posts = @user.fav_posts.page(params[:page]).per(5)
   end
 
   def following
     @user = User.find(params[:user_id])
-    @notifications = Notification.where(visited_id: current_user.id, checked: false)
     @follow_users = @user.followings
   end
 
@@ -46,5 +44,11 @@ class Public::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :image, :affiliation, :status)
+  end
+
+  def set
+    if user_signed_in?
+      @notifications = Notification.where(visited_id: current_user.id, checked: false)
+    end
   end
 end

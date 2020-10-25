@@ -1,4 +1,5 @@
 class Admins::SearchesController < ApplicationController
+	layout 'admin_application'
 
 	def search
 		word = params[:word]

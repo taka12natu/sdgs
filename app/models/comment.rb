@@ -5,6 +5,8 @@ class Comment < ApplicationRecord
 	belongs_to :user
 	belongs_to :post
 
+	validates :content, presence: true
+
 	def self.search(word)
 		if word
 			where(['content LIKE ?', "#{word}%"])

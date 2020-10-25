@@ -4,82 +4,73 @@
     <title>Sdgs</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-
+ <div class="wrapper">
     <header>
-      <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="/">
-            <%= image_tag 'PF_logo.png', alt: "no_image.jpg", class: "navbar-brand" %>
-          </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item active">
-                <p class="nav-link text-dark">ログインユーザー：<%= current_user.name %><span class="sr-only">(current)</span></p>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Mypage", user_path(current_user),class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Top", top_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to notifications_path do %>
-              <div class="notification-badge">
-                <i class="far fa-envelope fa-2x text-dark"></i>
-                <span class="badge badge-pill badge-primary pos"><%= Notification.where(visited_id: current_user.id, checked: false).count %></span>
-              </div>
-              <% end %>
-            </li>
-          <% elsif admin_signed_in?  %>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
-            </li>
-            <!-- 検索機能 -->
-            <div class="form-inline my-2 my-lg-0">
-              <%= form_tag(admins_search_path, method: :get) do %>
-                <%= text_field_tag :word, '', class: 'form-control mr-sm-2' %>
-                <%= select_tag 'range', options_for_select([["ユーザー", "user"], ["投稿", "post"], ["コメント", "comment"]]) %>
-                <%= submit_tag "検索", class: 'btn btn-outline-success my-2 my-sm-0' %>
-              <% end %>
-            </div>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "お問い合わせ", new_contacts_path, class: "nav-link text-dark" %>
-            </li>
-          <% end %>
-          </ul>
-        </div>
-      </div>
-      </nav>
+      <% if admin_signed_in? %>
+        <%= render 'layouts/admin-header' %>
+      <% else %>
+      <%= render 'layouts/user-header' %>
+      <% end %>
     </header>
 
-    <body class="bg-light", style="padding-top: 80px;">
+<body class="bg-light", style="padding-top: 80px;">
       <div class="container mt-3">
         <%= yield %>
       </div>
       <span id="back-to-top">
-      <a href="#">
-        <i class="fas fa-arrow-circle-up fa-3x text-secondary"></i>
-      </a>
-</span>
-
-    </body>
+        <a href="#">
+          <i class="fas fa-arrow-circle-up fa-3x text-secondary"></i>
+        </a>
+      </span>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</body>
+</div>
+<footer class="border-top mt-3">
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag 'PF_logo_new.png', alt: "no_image.jpg", class: "img-fluid w-75 mb-2" %>
+        <p class="m-0 b-0"><small>copyright 2020 Our SDGs.</small></p>
+      </div>
+      <div class="col-md-2">
+        <p class="font-weight-bold border-right">Menu</p>
+      </div>
+        <div class="col-md-3 navbar">
+            <ul class="navbar-nav">
+                 <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class: "text-dark" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "SDGsについて", goals_path, class: "text-dark" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "お問い合わせ", contacts_path, class: "text-dark" %>
+                  </li>
+             </ul>
+        </div>
+        <div class="col-md-3 navbar">
+          <ul class="navbar-nav">
+                <li class="nav-item">
+                  <% if user_signed_in? %>
+                    <%= link_to "マイページ", user_path(current_user), class: "text-dark" %>
+                  <% else %>
+                    <%= link_to "マイページ", new_user_registration_path, class: "text-dark" %>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "ログイン", new_user_session_path, class: "text-dark" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "会員登録", new_user_registration_path, class: "text-dark" %>
+                </li>
+           </ul>
+       </div>
+    </div>
+  </div>
+</footer>
 </html>

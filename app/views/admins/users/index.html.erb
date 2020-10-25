@@ -1,10 +1,12 @@
-<h1>ユーザー一覧</h1>
+<h2>ユーザー一覧</h2>
 
-	<table>
-		<thead>
+	<table class="table mt-2">
+		<thead class="thead-dark">
 			<tr>
-				<th>ユーザーID</th>
+				<th>ID</th>
 				<th>ユーザー名</th>
+				<th>所属</th>
+				<th>登録日</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -13,7 +15,9 @@
 			<tr>
 				<td><%= user.id %></td>
 				<td><%= user.name %></td>
-				<td><%= link_to "詳細", admins_user_path(user) %></td>
+				<td><%= user.affiliation %></td>
+				<td><%= user.created_at.strftime('%Y/%m/%d') %></td>
+				<td><%= link_to "詳細", admins_user_path(user), class: "btn btn-outline-secondary" %></td>
 			</tr>
 			<% end %>
 		</tbody>

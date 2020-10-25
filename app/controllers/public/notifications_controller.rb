@@ -1,4 +1,5 @@
 class Public::NotificationsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
   	rank = Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)
