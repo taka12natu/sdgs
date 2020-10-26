@@ -9,19 +9,19 @@ class Public::PostsController < ApplicationController
 		elsif params[:tag_id].present?
 			@posts = Tag.find(params[:tag_id]).posts.order("created_at desc").page(params[:page]).per(5)
 		else
-			@posts = Post.all.order("created_at desc").page(params[:page]).per(8)
+			@posts = Post.includes(:user, :post_images).all.order("created_at desc").page(params[:page]).per(8)
 		end
-		rank = Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)
+		rank = Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(3).pluck(:post_id)
 		@top_fav_post = Post.find(rank)
 
 	end
 
 	def show
 		@post = Post.find(params[:id])
-		@comments = @post.comments.order("created_at desc").page(params[:page]).per(4)
+		@comments = @post.comments.order(Arel.sql("created_at desc")).page(params[:page]).per(4)
 		@comment = Comment.new
 
-		rank = Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)
+		rank = Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(3).pluck(:post_id)
 		@top_fav_post = Post.find(rank)
 	end
 

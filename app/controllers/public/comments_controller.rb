@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-
+  before_action :authenticate_user!, only: [:destroy]
 	def create
 		if user_signed_in?
 			@comment = Comment.new(comment_params)
@@ -17,6 +17,12 @@ class Public::CommentsController < ApplicationController
 			 flash[:error] = 'ログインしないとコメントは送信できません。'
 			 redirect_to request.referer
 		end
+	end
+
+	def destroy
+		@comment = Comment.find_by(post_id: params[:post_id], user_id: current_user.id)
+		@comment.destroy
+		redirect_to request.referer
 	end
 
 	private

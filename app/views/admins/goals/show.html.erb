@@ -1,2 +1,7 @@
-<h1>Admins::Goals#show</h1>
-<p>Find me in app/views/admins/goals/show.html.erb</p>
+<h1 class="mt-4"><%= @goal.name %></h1>
+
+<% unless @goal.content == nil %>
+	<p><%=safe_join(@goal.content.split("\n"),tag(:br))%></p>
+<% end %>
+
+<%= link_to "編集", edit_admins_goal_path(@goal), class: "btn btn-outline-secondary" %>

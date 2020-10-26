@@ -1,9 +1,13 @@
 <div class="row">
-		<h1 class="my-4"><%= @goal.name %></h1>
-		<p>持続可能な開発目標（SDGs）とは，2001年に策定されたミレニアム開発目標（MDGs）の後継として，2015年9月の国連サミットで採択された「持続可能な開発のための2030アジェンダ」にて記載された2030年までに持続可能でよりよい世界を目指す国際目標です。17のゴール・169のターゲットから構成され，地球上の「誰一人取り残さない（leave no one behind）」ことを誓っています。 SDGsは発展途上国のみならず，先進国自身が取り組むユニバーサル（普遍的）なものであり，日本としても積極的に取り組んでいます。<br>
-		出典：外務省HP
-		</p>
+  <div class="col-9">
+      <h2 class="mt-0 mb-1"><%= @goal.name %></h2><br>
+      <p><%=safe_join(@goal.content.split("\n"),tag(:br))%></p>
+  </div>
+  <div class="col-3">
+    <%= image_tag "sdgs_icon_#{@goal.id}.png", class: "img-fluid" %>
+  </div>
 </div>
+
 
 <div class="h3 mt-4">新着投稿</div>
   <div class="row">
@@ -25,7 +29,7 @@
                   <% end %>
                     <div class="card-body">
                       <h4 class="card-title text-truncate"><small><%= post.title %></small></h4>
-                      <p class="card-text text-truncate">
+                      <p class="card-text small_line_wrap">
                           <small><%= post.body %></small>
                       </p>
                     </div>
@@ -62,7 +66,7 @@
             <div class="card">
               <h5 class="card-header"><%= goal_post.title %><span class="float-right"><small>投稿日:<%= goal_post.created_at.strftime('%Y/%m/%d') %></small></span></h5>
               <div class="card-body">
-                  <p class="card-text"><%= goal_post.body.truncate(100) %></p>
+                  <p class="card-text small_line_wrap"><%= goal_post.body %></p>
                   <div class="d-flex justify-content-end">
                     <div class="pt-1 mr-2">
                       <i class="fas fa-heart text-danger"></i>

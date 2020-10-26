@@ -6,7 +6,7 @@
   <div class="row">
     <div class="swiper-container post-image-slide">
         <div class="swiper-wrapper">
-            <% Post.order("RANDOM()").limit(5).each do |post| %>
+            <% Post.includes(:post_images).order(Arel.sql(("RANDOM()"))).limit(5).each do |post| %>
               <div class="swiper-slide">
                 <div class="card py-3 m-2">
                   <% if post.post_images.present? %>
@@ -22,7 +22,7 @@
                   <% end %>
                     <div class="card-body">
                       <h4 class="card-title text-truncate"><small><%= post.title %></small></h4>
-                      <p class="card-text text-truncate">
+                      <p class="card-text small_line_wrap">
                           <small><%= post.body %></small>
                       </p>
                     </div>
@@ -59,7 +59,7 @@
             <div class="card">
               <h5 class="card-header"><%= post.title %><span class="float-right"><small>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></small></span></h5>
               <div class="card-body">
-                  <p class="card-text"><%= post.body.truncate(100) %></p>
+                  <p class="card-text small_line_wrap"><%= post.body %></p>
                   <div class="d-flex justify-content-end">
                     <div class="pt-1 mr-2">
                       <i class="fas fa-heart text-danger"></i>

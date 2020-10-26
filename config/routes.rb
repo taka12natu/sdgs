@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       get '/following' => 'users#following'
     end
     resources :posts do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     resource :contacts, only: [:new, :create]
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :create, :destroy]
     resources :posts, only: [:index, :show]
     resources :users, only: [:index, :show]
-    resources :comments, only: [:index]
+    resources :comments, only: [:index, :destroy]
     resources :contacts, only: [:index, :show]
     resources :goals, only: [:index, :show, :edit, :update]
   end

@@ -1,4 +1,5 @@
 class Admins::SearchesController < ApplicationController
+  	before_action :authenticate_admin!
 	layout 'admin_application'
 
 	def search
