@@ -9,20 +9,15 @@
 	<div class="form-group">
 		<%= f.label :title, class: "form-label" %>
 		<%= f.text_field :title, class: "form-control" %>
-		<div class="invalid-feedback">必須</div>
 	</div>
 	<div class="form-group form-row">
 		<%= f.label :目標, class: "form-label" %>
 		<%= f.collection_select :goal_id, Goal.all, :id, :name,
         {prompt: "選択してください"}, {class: "form-control"} %>
-        		<div class="invalid-feedback">必須</div>
-
 	</div>
 	<div class="form-group">
 		<%= f.label :body, class: "form-label" %>
 		<%= f.text_area :body, class: "form-control", rows: 20 %>
-				<div class="invalid-feedback">必須</div>
-
 	</div>
 	<div class="form-inline">
 		<%= f.label :タグ, class: "form-label" %>: 

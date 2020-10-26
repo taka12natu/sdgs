@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
 
   def favorite_post
     @user = User.find(params[:user_id])
-    @fav_posts = @user.fav_posts.page(params[:page]).per(5)
+    @fav_posts = @user.fav_posts.includes(:user).page(params[:page]).per(5)
   end
 
   def following

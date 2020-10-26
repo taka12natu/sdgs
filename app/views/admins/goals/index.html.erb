@@ -1,2 +1,20 @@
-<h1>Admins::Goals#index</h1>
-<p>Find me in app/views/admins/goals/index.html.erb</p>
+<h2>目標一覧</h2>
+
+	<table class="table mt-2">
+		<thead class="thead-dark">
+			<tr>
+				<th>目標名</th>
+				<th>最終更新日</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @goals.each do |goal| %>
+			<tr>
+				<td><%= goal.name %></td>
+				<td><%= goal.updated_at.strftime('%Y/%m/%d') %></td>
+				<td><%= link_to "表示", admins_goal_path(goal), class: "btn btn-outline-secondary" %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>

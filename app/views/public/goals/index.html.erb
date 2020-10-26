@@ -36,14 +36,13 @@
 			<div id="scroll_<%= goal.id %>">
 				<div class="card mt-4">
 					<div class="media">
-	  					<%= image_tag "sdgs_icon_#{goal.id}.png", :size => '140x140', class: "d-flex mr-3" %>
-	  					<div class="media-body">
-	    					<h5 class="mt-0"><%= goal.name %></h5>
-			    				TextTextTextTextTextTextTextTextTextTextTextTextTextTextText<br>
-			    				TextTextTextTextTextTextTextTextTextTextTextTextTextTextText<br>
-			    				TextTextTextTextTextTextTextTextTextTextTextTextTextTextText
-	    					<%= link_to "詳細", goal_path(goal), class: "btn btn-outline-secondary float-right mr-3" %>
-	  					</div>
+	  					<%= image_tag "sdgs_icon_#{goal.id}.png", :size => '170x170', class: "d-flex mr-3" %>
+	  					<div class="media-body pb-1 pr-2">
+	    					<h5 class="pt-1"><%= goal.name %></h5>
+			    			<div class="line_wrap pr-1"><%= goal.content %></div>
+		  					<%= link_to "詳細", goal_path(goal), class: "btn btn-outline-secondary align-self-end float-right mr-3" %>
+  					</div>
+
 					</div>
 				</div>
 			</div>

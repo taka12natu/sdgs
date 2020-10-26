@@ -1,4 +1,5 @@
 class Admins::TagsController < ApplicationController
+  	before_action :authenticate_admin!
 	layout 'admin_application'
 
 	def index

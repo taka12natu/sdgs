@@ -25,8 +25,4 @@ class Post < ApplicationRecord
 	def favorited_by?(user,post)
 		favorites.where(user_id: user.id, post_id: post.id).exists?
 	end
-
-	def fav_post_rank
-
-	end
 end
