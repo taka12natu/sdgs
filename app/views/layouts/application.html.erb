@@ -13,6 +13,21 @@
     <header>
       <% if admin_signed_in? %>
         <%= render 'layouts/admin-header' %>
+      <% elsif user_signed_in? %>
+      <p>ログインユーザー：<%= current_user.name %></p>
+      <%= link_to "MyPage", user_path(current_user) %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "top", top_path %>
+        <%= link_to "問い合わせ", new_contacts_path %>
+      <% elsif admin_signed_in?  %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        <!-- 検索機能 -->
+         <%= form_tag(admins_search_path, method: :get) do %>
+          <%= text_field_tag :word %>
+          <%= select_tag 'range', options_for_select([["ユーザー", "user"], ["投稿", "post"], ["コメント", "comment"]]) %>
+          <%= submit_tag "検索" %>
+        <% end %>
+        <!--  -->
       <% else %>
       <%= render 'layouts/user-header' %>
       <% end %>
