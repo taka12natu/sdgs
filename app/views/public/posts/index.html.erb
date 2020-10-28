@@ -6,7 +6,7 @@
   <div class="row">
     <div class="swiper-container post-image-slide">
         <div class="swiper-wrapper">
-            <% Post.includes(:post_images).order(Arel.sql(("RANDOM()"))).limit(5).each do |post| %>
+            <% Post.includes(:post_images).order("RAND()").limit(5).each do |post| %>
               <div class="swiper-slide">
                 <div class="card py-3 m-2">
                   <% if post.post_images.present? %>
