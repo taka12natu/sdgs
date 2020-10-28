@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:destroy]
+
 	def create
 		if user_signed_in?
 			@comment = Comment.new(comment_params)

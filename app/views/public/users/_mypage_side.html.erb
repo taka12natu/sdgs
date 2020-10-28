@@ -1,5 +1,7 @@
 	<div class="card">
-	  	<%= attachment_image_tag(user, :image, fallback: "no_image.jpg", class: "card-img-top") %>
+		<div class="image-trim">
+	  		<%= attachment_image_tag(user, :image, fallback: "no_image.jpg", class: "card-img-top img-fluid img-thumbnail") %>
+	  	</div>
 		<div class="card-body">
 			<h5 class="card-title">ユーザー：<%= user.name %></h5>
 			<div class="card-text">

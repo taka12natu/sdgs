@@ -12,20 +12,21 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       resources :favorites, only: [:index]
       resources :relationships, only: [:create, :destroy]
-      delete '/withdraw' => 'users#withdraw'
-      get '/complete' => 'users#complete'
-      get '/my_post' => 'users#my_post'
-      get '/favorite_post' => 'users#favorite_post'
-      get '/following' => 'users#following'
+      delete :withdraw
+      get :complete
+      get :my_post
+      get :favorite_post
+      get :following
     end
     resources :posts do
       resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    resource :contacts, only: [:new, :create]
-    post '/contacts/confirm' => 'contacts#confirm'
-    post '/contacts/back' => 'contacts#back'
-    get '/contacts/complete' => 'contacts#complete'
+    resource :contacts, only: [:new, :create] do
+      post :confirm
+      post :back
+      get :complete
+    end
     resources :notifications, only: [:index]
     resources :goals, only: [:index, :show]
   end

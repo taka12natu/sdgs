@@ -6,11 +6,11 @@ class Admins::SearchesController < ApplicationController
 		word = params[:word]
 		@range = params[:range]
 		if @range == "user"
-			@users = User.search(word)
+			@users = User.search(word).page(params[:page]).per(10)
 		elsif @range == "post"
-			@posts = Post.search(word)
+			@posts = Post.search(word).includes(:user).page(params[:page]).per(10)
 		else
-			@comments = Comment.search(word)
+			@comments = Comment.search(word).includes(:post, :user).page(params[:page]).per(10)
 		end
 	end
 end

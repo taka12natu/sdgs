@@ -1,6 +1,6 @@
-<h1>my page</h1>
+<h1>ユーザー情報</h1>
 
-<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "img-thumbnail") %>
+<%= attachment_image_tag(@user, :image, :fill, 200, 200, fallback: "no_image.jpg", class: "img-thumbnail") %>
 
 <p>ユーザー名: <%= @user.name %></p>
 
@@ -15,3 +15,5 @@
 <div class="mt-3">
 	<%= link_to "削除", user_withdraw_path(@user), class: "btn btn-danger", method: :delete, data: { confirm: 'このユーザーを削除してよろしいですか?' } %>
 </div>
+
+<%= link_to "戻る", :back, class: "btn btn-outline-secondary mt-3" %>

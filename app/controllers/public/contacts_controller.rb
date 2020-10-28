@@ -17,7 +17,8 @@ class Public::ContactsController < ApplicationController
 		@contact = Contact.new(contact_params)
 		if @contact.save
 			ConfirmMailer.send_confirm(@contact).deliver
-			redirect_to contacts_complete_path
+			ConfirmMailer.send_confirm_to_admin(@contact).deliver
+			redirect_to complete_contacts_path
 		else
 			render :new
 		end

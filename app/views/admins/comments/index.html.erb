@@ -16,7 +16,7 @@
 				<td><%= comment.id %></td>
 				<td><%= comment.content.truncate(30) %></td>
 				<td><%= comment.user.name %></td>
-				<td><%= link_to "コメント元の投稿", posts_path(comment.post) %></td>
+				<td><%= link_to "コメント元の投稿", post_path(comment.post) %></td>
 			</tr>
 			<% end %>
 		</tbody>

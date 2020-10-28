@@ -8,4 +8,12 @@ class ConfirmMailer < ApplicationMailer
       to: @contact.email
     )
   end
+
+  def send_confirm_to_admin(contact)
+    @contact = contact
+    mail(
+      subject: "問い合わせ通知",
+      to: ENV['ADDRESS']
+    )
+  end
 end

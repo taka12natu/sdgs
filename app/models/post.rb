@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 
 	def self.search(word)
 		if word
-			where(['title LIKE ?', "#{word}%"])
+			where(['title LIKE? OR body LIKE?', "%#{word}%", "%#{word}%"])
 		else
 			all
 		end

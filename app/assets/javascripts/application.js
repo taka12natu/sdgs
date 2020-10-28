@@ -69,6 +69,7 @@ $(document).on('turbolinks:load', function() {
       });
   });
 
+//投稿画像のスライドショー
   $(function() {
     new Swiper('.post-image-slide', {
 
@@ -100,6 +101,14 @@ $(document).on('turbolinks:load', function() {
             }
         });
     });
+
+//クリックでコメントを全文表示
+ $(function() {
+    $('.line_wrap_comment').click(function () {
+        $(this).removeClass("line_wrap_comment");
+    });
+  });
+
 
 
 

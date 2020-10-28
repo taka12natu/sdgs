@@ -1,6 +1,7 @@
 class Admins::GoalsController < ApplicationController
   before_action :authenticate_admin!
   layout 'admin_application'
+
   def index
   	@goals = Goal.all
   end
@@ -15,8 +16,11 @@ class Admins::GoalsController < ApplicationController
 
   def update
   	@goal = Goal.find(params[:id])
-    @goal.update(goal_params)
-    redirect_to admins_goal_path(@goal)
+    if @goal.update(goal_params)
+      redirect_to admins_goal_path(@goal)
+    else
+      render :edit
+    end
   end
 
   private
