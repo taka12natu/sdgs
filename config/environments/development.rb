@@ -60,10 +60,12 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.after_initialize do
-    Bullet.enable = false #Bullet gemを有効
+    Bullet.enable = true #Bullet gemを有効
     Bullet.alert = true #ブラウザにJavaScriptアラートをポップアップ
     Bullet.bullet_logger = true #Bulletログファイル（Rails.root/log/bullet.log）に記録
     Bullet.console = true #警告をブラウザーのconsole.logに記録
     Bullet.rails_logger = true #警告を直接Railsログに追加
   end
+  config.web_console.whitelisted_ips = '10.0.2.2'
+
 end

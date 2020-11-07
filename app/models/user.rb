@@ -20,7 +20,6 @@ class User < ApplicationRecord
   has_many :reverce_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverce_relationships, source: :user
 
-
 #通知機能
   has_many :active_notification, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notification, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
