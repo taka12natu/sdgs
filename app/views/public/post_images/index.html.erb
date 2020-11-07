@@ -1,0 +1,27 @@
+<div class="row">
+		<h2 class="my-4">画像から気になる投稿を探す</h2>
+</div>
+<div class="row">
+  <% @image_tags.first(7).each do |image_tag| %>
+      <%= link_to image_tag, post_images_path(search_tag: image_tag), class: "btn btn-primary btn-sm mr-2 d-flex" %>
+    <% end %>
+</div>
+
+<div class="row mt-4">
+  <div class="col-9">
+      <% @post_images.each do |post_image| %>
+          <%= link_to post_path(post_image.post) do %>
+            <div class="d-inline-block post_image">
+              <%= attachment_image_tag(post_image, :image, :fill, 250, 250, fallback: "no_image.jpg", class: "img-thumbnail") %>
+              <div class="mask">
+                <p class="caption"><%= post_image.post.title %></p>
+              </div>
+            </div>
+          <% end %>
+      <% end %>
+      <div class="d-flex justify-content-center mt-3"><%= paginate @post_images %></div>
+  </div>
+  <div class="col-3">
+    <%= render 'layouts/sidebar' %>
+  </div>
+</div>
