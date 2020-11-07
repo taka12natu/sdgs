@@ -8,6 +8,6 @@ class Public::GoalsController < ApplicationController
 		@goal = Goal.find(params[:id])
 		@goal_posts = @goal.posts.includes(:user).page(params[:page]).per(8)
 		rank = Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)
-		@top_fav_post = Post.find(rank)
+		@top_fav_post = Post.includes([:post_images]).find(rank)
 	end
 end

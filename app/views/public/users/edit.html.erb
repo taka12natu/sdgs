@@ -8,7 +8,7 @@
 
       <%= form_for @user do |f| %>
       <div class="form-group">
-        <%= attachment_image_tag @user, :image, class: "img-square", fallback: "no_image.jpg", onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev' %>
+        <%= attachment_image_tag @user, :image, class: "img-square profile-image", fallback: "no_image.jpg", onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev' %>
         <%= f.attachment_field :image, class: 'img_field', style: 'display:none;' %>
       </div>
       <p>画像クリックで変更</p>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     end
     resources :notifications, only: [:index]
     resources :goals, only: [:index, :show]
+    resources :post_images, only: [:index]
   end
 
   devise_for :admins, controllers: {
