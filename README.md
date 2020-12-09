@@ -58,7 +58,7 @@ https://docs.google.com/spreadsheets/d/1H_OqHfSGhgkMiov2tFrnnY7SWDF2q1qHkBOvgpep
 - 言語：HTML,CSS,Ruby
 - フレームワーク：Ruby on Rails, Bootstrap
 - JSライブラリ：jQuery
-- 仮想環境：Vagrant,VirtualBox
+- インフラ：AWS(EC2,RDS,ELB)、Vagrant/VirtualBox
 
 ## 使用素材
  - SDGsロゴ：国際連合広報センター
