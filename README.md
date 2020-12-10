@@ -54,11 +54,11 @@ https://drive.google.com/file/d/18vLcqUxKdwh4IMoJI3mvSwjvfTTzHlKH/view?usp=shari
 https://docs.google.com/spreadsheets/d/1H_OqHfSGhgkMiov2tFrnnY7SWDF2q1qHkBOvgpepqeM/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- OS：Mac OS
+- 言語：HTML,CSS,Ruby
+- フレームワーク：Ruby on Rails, Bootstrap
 - JSライブラリ：jQuery
-- 仮想環境：Vagrant,VirtualBox
+- インフラ：AWS(EC2,RDS,ELB)、Vagrant/VirtualBox
 
 ## 使用素材
  - SDGsロゴ：国際連合広報センター
