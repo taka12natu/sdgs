@@ -72,7 +72,7 @@ Rails.application.configure do
     domain: 'gmail.com',
     port:587,
     user_name: ENV['ADDRESS'],
-    password: ENV['PASSWORD'],
+    password: 'gdujgtseidwdjraa',
     authentication: :login
   }
 
