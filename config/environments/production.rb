@@ -65,7 +65,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: '3.115.173.143' }
+  config.action_mailer.default_url_options = { host: 'our-sdgs.net' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:"smtp.gmail.com",
